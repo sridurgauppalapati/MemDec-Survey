@@ -5,108 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Memory to Decor Survey</title>
     <style>
-        :root {
-            --primary-color: #5a6e5f;
-            --accent-color: #d4a373;
-            --bg-color: #faf9f6;
-            --text-color: #333;
+        :root { --primary: #5a6e5f; --accent: #d4a373; --bg: #faf9f6; --error: #e63946; }
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; background: var(--bg); color: #333; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        header { text-align: center; margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
+        .question-block { margin-bottom: 25px; }
+        h3 { font-size: 1.1rem; color: var(--primary); margin-bottom: 12px; }
+        
+        /* Input Styling */
+        input[type="text"] { 
+            width: 100%; padding: 12px; margin-top: 5px; 
+            border: 2px solid #ddd; border-radius: 6px; box-sizing: border-box; 
+            transition: border-color 0.3s;
+        }
+        
+        /* Red highlight for missing values */
+        .invalid-input {
+            border-color: var(--error) !important;
+            background-color: #fff5f5;
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
+        .error-message {
+            color: var(--error);
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
         }
 
-        .container {
-            max-width: 700px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-
-        header {
-            text-align: center;
-            border-bottom: 2px solid var(--accent-color);
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-        }
-
-        h1 { color: var(--primary-color); margin-bottom: 10px; }
-        p.intro { font-style: italic; color: #666; }
-
-        .question-block {
-            margin-bottom: 30px;
-        }
-
-        h3 {
-            font-size: 1.1rem;
-            color: var(--primary-color);
-            margin-bottom: 15px;
-        }
-
-        .option-group {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        label {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            background: #fdfdfd;
-            padding: 10px;
-            border: 1px solid #eee;
-            border-radius: 8px;
-            transition: 0.3s;
-        }
-
-        label:hover {
-            background-color: #f0f4f1;
-            border-color: var(--primary-color);
-        }
-
-        input[type="checkbox"], input[type="radio"] {
-            margin-right: 15px;
-            transform: scale(1.2);
-            accent-color: var(--primary-color);
-        }
-
-        button {
-            display: block;
-            width: 100%;
-            padding: 15px;
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        button:hover {
-            background-color: #435247;
-        }
-    </style>
+        label { display: flex; align-items: center; padding: 10px; border: 1px solid #eee; margin-bottom: 8px; border-radius: 6px; cursor: pointer; transition: 0.2s; }
+        label:hover { background: #f4f7f5; }
+        input[type="checkbox"], input[type="radio"] { margin-right: 12px; accent-color: var(--primary); }
+        
+        button { width: 100%; padding: 15px; background: var(--primary); color: white; border: none; border-radius: 6px; font-size: 1rem; cursor: pointer; margin-top: 20px; font-weight: bold; }
+        button:hover { background: #4a5b4e; }
+     </style>
 </head>
 <body>
 
 <div class="container">
     <header>
-        <h1>Reminisce & Reveal</h1>
+        <h1>SURVEY</h1>
         <p class="intro">At <strong>MemoryCraft</strong>, we believe memories shouldn't just stay in albums. Help us understand how you'd like to transform your most cherished moments into beautiful home decor.</p>
     </header>
 
     <form action="https://formspree.io/f/xqedeyjd" method="POST">
         <input type="text" name ="visitor_name" placeholder="Enter your name" required>
             
+   
+
         <div class="question-block">
             <h3>1. Which "Big Life Chapter" would you most want to turn into a permanent piece of decor? (Select all that apply)</h3>
             <div class="option-group">
@@ -161,7 +107,53 @@
     </form>
 </div>
 
+<script>
+    const form = document.getElementById('surveyForm');
+    const userName = document.getElementById('userName');
+    const userContact = document.getElementById('userContact');
+    const nameError = document.getElementById('nameError');
+    const contactError = document.getElementById('contactError');
+
+    form.addEventListener('submit', function(e) {
+        let isValid = true;
+
+        // Check Name
+        if (userName.value.trim() === "") {
+            userName.classList.add('invalid-input');
+            nameError.style.display = 'block';
+            isValid = false;
+        } else {
+            userName.classList.remove('invalid-input');
+            nameError.style.display = 'none';
+        }
+
+        // Check Contact
+        if (userContact.value.trim() === "") {
+            userContact.classList.add('invalid-input');
+            contactError.style.display = 'block';
+            isValid = false;
+        } else {
+            userContact.classList.remove('invalid-input');
+            contactError.style.display = 'none';
+        }
+
+        if (!isValid) {
+            e.preventDefault(); // Stop the form from submitting
+            window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll up to show errors
+        }
+    });
+
+    // Remove red highlight when user starts typing
+    userName.addEventListener('input', () => {
+        userName.classList.remove('invalid-input');
+        nameError.style.display = 'none';
+    });
+    userContact.addEventListener('input', () => {
+        userContact.classList.remove('invalid-input');
+        contactError.style.display = 'none';
+    });
+</script>
+
 </body>
 
 </html>
-
