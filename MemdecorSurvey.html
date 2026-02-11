@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory to Decor Survey</title>
+    <style>
+        :root {
+            --primary-color: #5a6e5f;
+            --accent-color: #d4a373;
+            --bg-color: #faf9f6;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 2px solid var(--accent-color);
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+        }
+
+        h1 { color: var(--primary-color); margin-bottom: 10px; }
+        p.intro { font-style: italic; color: #666; }
+
+        .question-block {
+            margin-bottom: 30px;
+        }
+
+        h3 {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .option-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            background: #fdfdfd;
+            padding: 10px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        label:hover {
+            background-color: #f0f4f1;
+            border-color: var(--primary-color);
+        }
+
+        input[type="checkbox"], input[type="radio"] {
+            margin-right: 15px;
+            transform: scale(1.2);
+            accent-color: var(--primary-color);
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background-color: #435247;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Reminisce & Reveal</h1>
+        <p class="intro">At <strong>MemoryCraft</strong>, we believe memories shouldn't just stay in albums. Help us understand how you'd like to transform your most cherished moments into beautiful home decor.</p>
+    </header>
+
+    <form id="memorySurvey">
+        
+        <div class="question-block">
+            <h3>1. Which "Big Life Chapter" would you most want to turn into a permanent piece of decor? (Select all that apply)</h3>
+            <div class="option-group">
+                <label><input type="checkbox" name="big_chapter" value="wedding"> The "I Do" Moment (Weddings, Anniversaries)</label>
+                <label><input type="checkbox" name="big_chapter" value="beginnings"> New Beginnings (Baby Showers, First Day of School, Graduation)</label>
+                <label><input type="checkbox" name="big_chapter" value="goodbye"> The Final Goodbye (Memorials for loved ones or pets)</label>
+                <label><input type="checkbox" name="big_chapter" value="career"> The Career Path (First job, Promotion, Retirement)</label>
+                <label><input type="checkbox" name="big_chapter" value="puberty"> Coming of Age (Puberty/Sweet 16, Cultural milestones)</label>
+            </div>
+        </div>
+
+        <div class="question-block">
+            <h3>2. Which "Everyday Magic" memory deserves a spot on your shelf? (Select one)</h3>
+            <div class="option-group">
+                <label><input type="radio" name="everyday_magic" value="travel" required> The Travel Buddy: That one epic trip with your best friend.</label>
+                <label><input type="radio" name="everyday_magic" value="roommate"> The Roommate Era: Late-night laughs and shared apartments.</label>
+                <label><input type="radio" name="everyday_magic" value="pet"> The Pet Bond: Your dog’s favorite (now retired) toy or collar.</label>
+                <label><input type="radio" name="everyday_magic" value="first_day"> The First Day: That nervous energy of a first day at work or school of you or your kid.</label>
+            </div>
+        </div>
+
+        <div class="question-block">
+            <h3>3. If you could "materialize" a memory, what form would it take? (Select one)</h3>
+            <div class="option-group">
+                <label><input type="radio" name="item_form" value="functional" required> Functional Decor (e.g., A clock made from a travel map, a lamp)</label>
+                <label><input type="radio" name="item_form" value="artistic"> Artistic Display (e.g., Pressed flowers, 3D shadow box)</label>
+                <label><input type="radio" name="item_form" value="textile"> Textile/Comfort (e.g., A quilt made from old concert tees or shirts)</label>
+                <label><input type="radio" name="item_form" value="jewelry"> Minimalist Jewelry/Keepsake (e.g., A small resin "gem" with sand)</label>
+            </div>
+        </div>
+
+        <div class="question-block">
+            <h3>4. What is the biggest "barrier" preventing you from DIY-ing these items yourself? (Select all that apply)</h3>
+            <div class="option-group">
+                <label><input type="checkbox" name="barrier" value="time"> Time: I’m too busy.</label>
+                <label><input type="checkbox" name="barrier" value="skill"> Skill: I’m afraid I’ll ruin the original items.</label>
+                <label><input type="checkbox" name="barrier" value="tools"> Tools: I don’t have the resin/woodworking/sewing equipment.</label>
+                <label><input type="checkbox" name="barrier" value="inspiration"> Inspiration: I don't know how to make it look "classy."</label>
+            </div>
+        </div>
+
+        <div class="question-block">
+            <h3>5. How much would you be willing to invest in a custom-crafted memory piece?</h3>
+            <div class="option-group">
+                <label><input type="radio" name="budget" value="small" required> 25 – 50 (Small keepsakes)</label>
+                <label><input type="radio" name="budget" value="medium"> 50 – 150 (Mid-size wall art or table decor)</label>
+                <label><input type="radio" name="budget" value="large"> 150+ (Large-scale custom heirlooms)</label>
+            </div>
+        </div>
+
+        <button type="submit">Submit My Memories</button>
+    </form>
+</div>
+
+</body>
+</html>
